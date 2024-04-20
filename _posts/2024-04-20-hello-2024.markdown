@@ -1,0 +1,19 @@
+---
+layout:     post
+title:      "Hello 2024"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2024-04-20 12:00:00
+author:     "zhangxx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - 日常
+---
+
+> “A new start. ”
+
+
+我的第一篇Blog。
+
+在研一的开源社区这门课程中，我接触到了怎么样在github搭建blog，这对我来说也是一个全新的领域。由于课程的作业要求，加上我也一直想找个地方记录自己学习和项目中的一些经验，避免犯重复的问题，也能给其他人一些借鉴，那么就此开启博客之路！
+
