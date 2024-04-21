@@ -15,11 +15,16 @@ tags:
 
 
 这个问题需要从两方面出发，一是后端如何将音频文件传出，二是前端调了接口后怎么处理。
-后端： cur_path = audio.transfer(path)
+## 后端 
+
+      cur_path = audio.transfer(path)
       file = open(cur_path, 'rb')
       return send_file(file, mimetype='audio/wav')
 在这个过程中有一点需要注意，因为需要前后端都操作，可以利用postman先确保后端正确传输，再调整前端。
-前端： fetch(url,{
+
+## 前端
+
+      fetch(url,{
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers({
