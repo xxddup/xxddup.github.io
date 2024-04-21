@@ -1,16 +1,40 @@
 ---
 layout:       post
-title:        "《JavaScript 二十年》推荐语"
-author:       "Hux"
+title:        "Angular音频显示"
+author:       "zhangxx"
 header-style: text
 catalog:      true
 tags:
-    - Web
-    - JavaScript
+    - 前端
+    - 后端
+    - Angular
+    - flask
 ---
 
-> 雪碧（doodlewind）邀请我给[《JavaScript 二十年》](https://zhuanlan.zhihu.com/p/373065151) 写的推荐序。
+> 在开发中遇到了在前端将后端传来的音频展示的需求。
 
-JavaScript 常常被戏称为一门偶然成功的玩具语言。而实际上，它出身名门，更是成长在聚光灯之下。纵观历史，有资格被标准化的编程语言甚少，它因此成为多方角力的战场，却也有幸同时得到业界与学界先驱的亲传。时至今日，我们甚至难言是它背负了太多妥协，还是这些妥协才成就了它呢。以史为鉴，或许你会有自己的答案。
 
-— 黄玄，Facebook 软件工程师（编程语言、JS 引擎、前端基础设施）、中文前端社区活跃成员。
+这个问题需要从两方面出发，一是后端如何将音频文件传出，二是前端调了接口后怎么处理。
+后端： cur_path = audio.transfer(path)
+      file = open(cur_path, 'rb')
+      return send_file(file, mimetype='audio/wav')
+在这个过程中有一点需要注意，因为需要前后端都操作，可以利用postman先确保后端正确传输，再调整前端。
+前端： fetch(url,{
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(response => response.blob())
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        console.log(url)
+        const audio_element = new Audio(url);
+        const  div = document.getElementById('div1');
+        audio_element.controls=true;
+        div!.appendChild(audio_element)
+        audio_element.play();
+      });
+
+还有一种可行方案是后端用send_from_directory来传输文件，这样可能需要在前端对'Content-Type'进行修改。
